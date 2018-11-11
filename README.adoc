@@ -1,0 +1,42 @@
+
+= Demo of properties injection
+
+1- using classpath scanning and Spring's magic @autowiring :
+* the MagicPropertiesController at URL ip:port/magicproperties displays the properties automatically injected into a property holder of type MyPropertiesMagic
+
+2- using explicit declaration :
+* the ConstructorPropertiesController is injected in its constructor a property holder of type MyPropertiesConstructor.
+This 'MyPropertiesConstructor' itself was created using explicit declaration in the Spring context (@Configuration or @SpringApplication annotated classes) and is passed the properties in its constructor.
+
+
+= Spring doc regarding external config
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config
+
+--------
+Command line arguments (spring boot convention: --myvar=xxxx )
+> Java System properties (-Dmyvar=xxxx )
+> OS environment variables (export myvar=xxxxx )
+> Profile-specific application properties outside of your packaged jar (application-{profile}.properties and YAML variants).
+> Profile-specific application properties packaged inside your jar (application-{profile}.properties and YAML variants).
+--------------
+
+= How to run
+
+----------
+export var2=222 && java -jar ./target/propertiesinjection-0.0.1-SNAPSHOT.jar --server.port=3333
+----------
+
+= What is important ?
+
+* use dependency injection !
+
+* properties and their values may be seen as dependencies
+
+* never access properties directly (like in System.getEnv())
+** you cannot override easily
+** it is messy: better when all properties access is done in Application Context definition files (@Configuration or @SpringBootApplication annotated classes)
+
+conclusion 1: inject properties
+
+conclusion 2: use explicit definition and constructor injection
