@@ -2,9 +2,11 @@
 = Demo of properties injection
 
 1- using classpath scanning and Spring's magic @autowiring :
+
 * the MagicPropertiesController at URL ip:port/magicproperties displays the properties automatically injected into a property holder of type MyPropertiesMagic
 
 2- using explicit declaration :
+
 * the ConstructorPropertiesController is injected in its constructor a property holder of type MyPropertiesConstructor.
 This 'MyPropertiesConstructor' itself was created using explicit declaration in the Spring context (@Configuration or @SpringApplication annotated classes) and is passed the properties in its constructor.
 
@@ -13,7 +15,7 @@ This 'MyPropertiesConstructor' itself was created using explicit declaration in 
 
 https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config
 
---------
+--------------
 Command line arguments (spring boot convention: --myvar=xxxx )
 > Java System properties (-Dmyvar=xxxx )
 > OS environment variables (export myvar=xxxxx )
